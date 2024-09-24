@@ -21,4 +21,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('/settings', function () {
+        return Inertia::render('Settings', [
+            'cities' => \App\Models\WeatherCityWatchlist::where('user_id', auth()->id())->get()
+        ]);
+    })->name('settings');
 });
